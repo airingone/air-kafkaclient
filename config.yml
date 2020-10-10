@@ -1,0 +1,32 @@
+#服务信息，server端模块必须有
+server:
+  name: congfig_test   #服务名，各模块需要取不一样的名字，如果使用etcd发现服务则使用服务名，建议XXX_name
+  author: airing       #服务负责人
+  version: 1.0         #版本
+  port: 8080           #服务端口，可http/tcp/udp
+  netTimeOutMs: 5000   #网络超时,单位毫秒，默认5000
+  idleTimeoutMs: 300   #tcp服务时的空闲时间上限，单位秒，默认300
+  capacityPool: 10000  #协程池最大协程数，默认10000
+  capacityLimit: 10000 #限频值，每秒最大请求量为该值，默认10000
+
+#日志配置
+log:
+  level: debug   #日志等级，支持error,debug,info,warn,trace，默认debug
+  path: ../log/  #日志路径，默认../log/
+  maxSize: 100   #日志文件最大大小，单位MB，默认100
+  maxBackups: 20 #文件数，默认20
+  maxAge: 30     #日志过期时间，单位天，默认30
+  compress: true #是否压缩，默认false
+
+#kafak product配置
+kafka_product:
+  addr: 127.0.0.1:9092 #地址
+  topic: topic01 #topic
+  timeOutMs: 10000    #发送超时
+
+#kafak consumer配置
+kafka_consumer:
+  addr: 127.0.0.1:9092 #地址
+  topics: ["topic01"] #topic
+  group: group01      #group
+  timeOutMs: 10000    #发送超时
