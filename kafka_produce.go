@@ -69,5 +69,7 @@ func (cli *KafkaProduce) Produce(data []byte) error {
 
 //close
 func (cli *KafkaProduce) Close() {
-	cli.p.Close()
+	if cli.p != nil {
+		cli.p.Close()
+	}
 }

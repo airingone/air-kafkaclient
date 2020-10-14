@@ -73,7 +73,11 @@ func NewKafkaConsumer(addrs string, group string, topics []string, timeoutMs uin
 
 //消息协程
 func (cli *KafkaConsumer) consumer() {
-	defer cli.c.Close()
+	defer func() {
+		if cli.c != nil {
+			cli.c.Close()
+		}
+	}()
 
 	sigchan := make(chan os.Signal, 1)
 	signal.Notify(sigchan, syscall.SIGINT, syscall.SIGTERM)
